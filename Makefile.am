@@ -165,12 +165,17 @@ noinst_PROGRAMS =
 noinst_PROGRAMS += db_bench
 noinst_PROGRAMS += leveldbutil
 noinst_PROGRAMS += leveldb-verify
+noinst_PROGRAMS += leveldb_repair
+#noinst_PROGRAMS += perf_dump
+#noinst_PROGRAMS += sst_rewrite
+#noinst_PROGRAMS += sst_scan
 
 EXTRA_PROGRAMS =
 EXTRA_PROGRAMS += benchmark
 EXTRA_PROGRAMS += leveldb-dump-all
 EXTRA_PROGRAMS += db_bench_sqlite3
 EXTRA_PROGRAMS += db_bench_tree_db
+
 
 check_PROGRAMS =
 check_PROGRAMS += autocompact_test
@@ -218,6 +223,22 @@ leveldb_dump_all_LDADD = libpebblesdb.la -lpthread
 
 leveldb_verify_SOURCES = leveldb-verify.cc
 leveldb_verify_LDADD = libpebblesdb.la -lpthread
+
+
+#############################################################
+leveldb_repair_SOURCES = tools/leveldb_repair.cc
+leveldb_repair_LDADD = libpebblesdb.la -lpthread -lsnappy
+
+#perf_dump_SOURCES = tools/perf_dump.cc
+#perf_dump_LDADD = libpebblesdb.la -lpthread -lsnappy
+
+#sst_rewrite_SOURCES = tools/sst_rewrite.cc
+#sst_rewrite_LDADD = libpebblesdb.la -lpthread -lsnappy
+
+#sst_scan_SOURCES = tools/sst_scan.cc
+#sst_scan_LDADD = libpebblesdb.la -lpthread -lsnappy
+
+#############################################################
 
 autocompact_test_SOURCES = db/autocompact_test.cc $(TESTHARNESS)
 autocompact_test_LDADD = libpebblesdb.la -lpthread
